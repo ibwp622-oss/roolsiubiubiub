@@ -159,8 +159,7 @@
 <script>
 /* CONFIGURATION */
 const CONFIG = {
-  targetLink: "https://boost786x.top/boost55abc/?utm_source=MHR-B&utm_medium=IuuB",
-  // Index 0 = no play button | Index 1,2,3 = show play after countdown
+  targetLink: "https://boost786x.top/boost55abc/?utm_source=MHR-B&utm_medium=ATQ",
   images: [
     "https://ibwp622-oss.github.io/sharing/image_03.webp",
     "https://blogger.googleusercontent.com/img/a/AVvXsEjVUsd8mlVZK1DJXR9EuGdrfRyV0nVuUrkzvaAGw4yUae65RBHpQi39ppBzQQTXZCF3wDJn4WQo6r1ImHFBdUZU5vxF07lBp-7Jyj4FNQ1vYnCWgNC2x0bILbK41nRKzaJP59n6OIsAKOTWZOJA_jXDb0Fo7tNhC4-BCf3qTXTcz3YKz-dsfdAnrPiCX_8q=s1600",
@@ -170,7 +169,6 @@ const CONFIG = {
 };
 
 let selectedIndex = 0;
-let countdownFinished = false; // prevent early redirect
 
 function getRandomImage() {
   selectedIndex = Math.floor(Math.random() * CONFIG.images.length);
@@ -213,23 +211,16 @@ function startCountdown(seconds) {
       circleProgress.style.strokeDashoffset = totalCircleLength;
       clearInterval(timer);
       countdownBox.style.display = "none";
-      countdownFinished = true;
 
-      // Play button only for images index 1,2,3 (not first webp)
-      if (selectedIndex >= 1) {
-        document.getElementById("play-btn").style.display = "block";
-      } else {
-        goToTarget();
-      }
+      // 9 سیکنڈ پورے ہونے پر خود بخود ری ڈائریکٹ کر دے گا
+      goToTarget();
     }
   }, 1000);
 }
 
-/* Click handler — only redirect after countdown ends */
+/* Click handler — کاؤنٹ ڈاؤن کا انتظار کیے بغیر فوراً ری ڈائریکٹ کرے گا */
 function handleClick() {
-  if (countdownFinished) {
-    goToTarget();
-  }
+  goToTarget();
 }
 
 document.getElementById("main-image").addEventListener("click", handleClick);
